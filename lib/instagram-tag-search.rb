@@ -6,7 +6,7 @@ require 'net/https'
 require 'uri'
 require 'pp'
 require 'openssl'
-require 'CSV'
+require 'csv'
 
 class InstagramData
     attr_reader :tag_name, :get_number, :instagram_data

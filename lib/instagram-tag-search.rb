@@ -124,8 +124,8 @@ class InstagramData
     end
 
     # CSVファイルのヘッダを記入
-    def csvHeaderWrite(csvfilename)
-        CSV.open(csvfilename, "ab+") do |csv|
+    def csvHeaderWrite(csvfilename, encoding)
+        CSV.open(csvfilename, "ab+", :encoding => encoding) do |csv|
             writeData = Array.new
             writeData.push("ユーザID")
             writeData.push("投稿日時（日本時間）")
@@ -140,10 +140,9 @@ class InstagramData
     end
 
     # CSVファイルへの書き込み
-    def csvDataWrite(dataArray, csvfilename)
+    def csvDataWrite(dataArray, csvfilename, encoding)
         dataArray.each do |n|
-            puts "n write n is #{n}"
-            CSV.open(csvfilename, "ab+") do |csv|
+            CSV.open(csvfilename, "ab+", :encoding => encoding) do |csv|
                 # データはハッシュなので配列にし、キーを除き、値を代入する
                 writeData = n.to_a.map{|e| e[1]}
                 
@@ -153,11 +152,11 @@ class InstagramData
     end
 
     # CSVファイルへの書き込み
-    def writeToCSV(dataArray, csvfilename: "getInstagramData_#{Time.now.strftime("%Y%m%d%H%M%S")}.csv")
+    def writeToCSV(dataArray, csvfilename: "getInstagramData_#{Time.now.strftime("%Y%m%d%H%M%S")}.csv", encoding: 'UTF-8')
         # csvファイルにヘッダを記入
-        csvHeaderWrite(csvfilename)
+        csvHeaderWrite(csvfilename, encoding)
         # csvファイルに保存
-        csvDataWrite(dataArray, csvfilename)
+        csvDataWrite(dataArray, csvfilename, encoding)
     end
 
 end

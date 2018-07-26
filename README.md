@@ -30,6 +30,7 @@ instagramData.instagram_data
 # count of likes     instagramData.instagram_data[0][:likeCount]
 # caption            instagramData.instagram_data[0][:caption]
 # owner id           instagramData.instagram_data[0][:userId]
+# tags               instagramData.instagram_data[0][:tags]
 
 # If you want to save to CSV file, use writeToCSV method.
 # first argument is instagramdata
@@ -37,4 +38,11 @@ instagramData.instagram_data
 # if you do not specify second argument, 
 # save file name is like this: getInstagramData_201807222200.csv
 instagramData.writeToCSV(instagramData.instagram_data)
+
+# If you want to view csv file with Excel,
+# you have to convert character encode to sjis.
+# CSV file save to [[filename]]_sjis.csv
+# [restriction] some character convert to '?'.
+# For example, emoji, like this. 😍 -> ?
+instagramData.convertCSVtoSJIS
 ```
